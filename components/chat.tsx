@@ -25,7 +25,6 @@ export function Chat({ id, className }: ChatProps) {
   const [isLoading, setIsLoading] = useState()
   const [data, setData] = useState(null);
 
-  console.log('ExampleChats :', ExampleChats);
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
