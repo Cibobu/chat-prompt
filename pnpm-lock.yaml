@@ -14,6 +14,7 @@ specifiers:
   eslint: 8.45.0
   eslint-config-next: 13.4.12
   eslint-plugin-tailwindcss: ^3.13.0
+  nanoid: ^4.0.2
   next: 13.4.12
   next-themes: ^0.2.1
   postcss: 8.4.27
@@ -43,6 +44,7 @@ dependencies:
   eslint: 8.45.0
   eslint-config-next: 13.4.12_ko3fmmbeyij36muomfgt2u76xu
   eslint-plugin-tailwindcss: 3.13.0_tailwindcss@3.3.3
+  nanoid: 4.0.2
   next: 13.4.12_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.1_54ux7fu2vrztxgcjbkegvwjefy
   postcss: 8.4.27
@@ -2858,6 +2860,12 @@ packages:
   /nanoid/3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
+
+  /nanoid/4.0.2:
+    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
+    engines: {node: ^14 || ^16 || >=18}
     hasBin: true
     dev: false
 
