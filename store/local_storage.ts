@@ -1,12 +1,10 @@
 import CryptoJS from 'crypto-js'
-import { Admin } from '../services/types'
 
 const { AES, enc } = CryptoJS
 const LOCALSTORAGE_KEYNAME = 'store'
 export const HASH_SECRET_KEY = 's3Cr3t_K3y'
 
 export interface PersistentState {
-  admin?: Admin;
   accessToken?: string;
 }
 
