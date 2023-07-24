@@ -10,6 +10,7 @@ specifiers:
   '@types/react-dom': 18.2.7
   autoprefixer: 10.4.14
   class-variance-authority: ^0.7.0
+  clsx: ^2.0.0
   eslint: 8.45.0
   eslint-config-next: 13.4.12
   eslint-plugin-tailwindcss: ^3.13.0
@@ -38,6 +39,7 @@ dependencies:
   '@types/react-dom': 18.2.7
   autoprefixer: 10.4.14_postcss@8.4.27
   class-variance-authority: 0.7.0
+  clsx: 2.0.0
   eslint: 8.45.0
   eslint-config-next: 13.4.12_ko3fmmbeyij36muomfgt2u76xu
   eslint-plugin-tailwindcss: 3.13.0_tailwindcss@3.3.3
