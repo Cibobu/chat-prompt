@@ -6,7 +6,6 @@ import reducer from '@/store/reducer'
 import { globalState } from '@/store/state'
 import { ThemeProvider } from 'next-themes'
 import { Header } from '@/components/headers'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Toaster } from 'react-hot-toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
@@ -23,11 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <div className="flex flex-col min-h-screen">
             {/* @ts-ignore */}
             <Header />
-            <main className="flex flex-col flex-1 bg-muted/50">
+            <main className="flex flex-col flex-1">
               <Component {...pageProps} />
             </main>
           </div>
-          <TailwindIndicator />
         </TooltipProvider>
       </ThemeProvider>
     </StoreContextWrapper.Provider>

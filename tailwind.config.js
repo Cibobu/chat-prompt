@@ -8,12 +8,14 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-radial': 'radial-gradient(circle, rgba(103, 21, 142, 1) 0%, rgba(42, 0, 57, 1) 100%)',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
         border: 'hsl(var(--border))',
+        user: 'var(--chat-user)',
+        assistant: 'var(--chat-assistant)',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',

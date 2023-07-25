@@ -6,6 +6,12 @@
   --background: 0 0% 100%;
   --foreground: 240 10% 3.9%;
 
+  --chat-user: #6D4AB6;
+  --chat-assistant: #1C1C25;
+
+  --gradients: rgb(103, 21, 142);
+  --gradients-foreground: radial-gradient(circle, rgba(103, 21, 142, 1) 0%, rgba(42, 0, 57, 1) 100%);
+
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 

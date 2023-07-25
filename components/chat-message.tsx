@@ -13,20 +13,24 @@ export interface ChatMessageProps {
 export function ChatMessage({ message, ...props }: ChatMessageProps) {
   return (
     <div
-      className={cn('group relative mb-4 flex items-start md:-ml-12')}
+      className={cn('group relative mb-4 flex items-start md:-ml-12 text-sm')}
       {...props}
     >
+      {message.role !== 'user' ?
+        <div
+          className={cn(
+            'flex h-8 w-8 mr-4 shrink-0 select-none items-center justify-center rounded-md border shadow bg-primary text-primary-foreground'
+          )}
+        >
+          <IconOpenAI />
+        </div> : null }
       <div
-        className={cn(
-          'flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
-          message.role === 'user'
-            ? 'bg-background'
-            : 'bg-primary text-primary-foreground'
-        )}
+        className={cn('flex-1 space-y-2 overflow-hidden px-4 py-3.5 max-w-fit',
+        message.role === 'user' ? 'ml-auto bg-user text-end' : 'bg-assistant text-start')}
+        style={{
+          borderRadius: message.role === 'user' ? '50px 0 20px 50px' : '0 50px 50px 20px',
+        }}
       >
-        {message.role === 'user' ? <IconUser /> : <IconOpenAI />}
-      </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
         <MemoizedReactMarkdown
           className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
           remarkPlugins={[remarkGfm, remarkMath]}
@@ -60,6 +64,14 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
           {message.content}
         </MemoizedReactMarkdown>
       </div>
+      {message.role === 'user' ? 
+        <div
+          className={cn(
+            'flex h-8 w-8 shrink-0 ml-4 select-none items-center justify-center rounded-md border shadow bg-background'
+          )}
+        >
+          <IconUser />
+        </div> : null }
     </div>
   )
 }

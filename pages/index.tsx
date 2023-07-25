@@ -7,6 +7,6 @@ const plus_jakarta_sans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <Chat />
+    <Chat className={plus_jakarta_sans.className} />
   )
 }
