@@ -16,7 +16,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
       className={cn('group relative mb-4 flex items-start md:-ml-12 text-sm')}
       {...props}
     >
-      {message.role !== 'user' ?
+      {message.ai_chat_role !== '2' ?
         <div
           className={cn(
             'flex h-8 w-8 mr-4 shrink-0 select-none items-center justify-center rounded-md border shadow bg-primary text-primary-foreground'
@@ -26,9 +26,9 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
         </div> : null }
       <div
         className={cn('flex-1 space-y-2 overflow-hidden px-4 py-3.5 max-w-fit',
-        message.role === 'user' ? 'ml-auto bg-user text-end' : 'bg-assistant text-start')}
+        message.ai_chat_role === '2' ? 'ml-auto bg-user text-end' : 'bg-assistant text-start')}
         style={{
-          borderRadius: message.role === 'user' ? '50px 0 20px 50px' : '0 50px 50px 20px',
+          borderRadius: message.ai_chat_role === '2' ? '50px 0 20px 50px' : '0 50px 50px 20px',
         }}
       >
         <MemoizedReactMarkdown
@@ -61,10 +61,10 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
             }
           }}
         >
-          {message.content}
+          {message.message}
         </MemoizedReactMarkdown>
       </div>
-      {message.role === 'user' ? 
+      {message.ai_chat_role === '2' ? 
         <div
           className={cn(
             'flex h-8 w-8 shrink-0 ml-4 select-none items-center justify-center rounded-md border shadow bg-background'

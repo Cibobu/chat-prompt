@@ -11,11 +11,12 @@ import {
 import { useEnterSubmit } from '@/lib/hooks/use-enter-submit'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
+import { getCookie, setCookieWithExpiration } from '@/lib/hooks/use-cookies-storage'
 
 export interface PromptProps {
   onSubmit?: (value: string) => Promise<void>;
   isLoading: boolean;
-  setInput?: (value: string) => void;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
   input?: string;
 }
 
@@ -35,20 +36,43 @@ export function PromptForm({
     }
   }, [])
 
+  const resetUIDExpiration = () => {
+    const currentUID = getCookie('uid');
+    if (currentUID) {
+      setCookieWithExpiration('uid', currentUID);
+    } // Hanya mengatur ulang waktu kadaluarsa tanpa mengubah nilai "uid"
+  };
+
+  const onChanges = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // Tangkap setiap perubahan yang terjadi pada textarea
+    setInput && setInput(event.target.value);
+    resetUIDExpiration();
+  };
+
+  const onFocuses = () => {
+    // Tangkap aktifitas ketika textarea mendapatkan fokus
+    resetUIDExpiration();
+  };
+
+  const onBlurs = () => {
+    // Tangkap aktifitas ketika textarea kehilangan fokus
+    resetUIDExpiration();
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input?.trim()) {
+      return;
+    }
+    setInput('');
+    if (onSubmit) {
+      await onSubmit(input); // Panggil onSubmit yang disediakan di komponen Chat
+    }
+  };
+
   return (
     <form
-      onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!input?.trim()) {
-          return;
-        }
-        if (setInput) {
-          setInput(''); // Kosongkan nilai input di sini dengan memberikan argumen string
-        }
-        if (onSubmit) {
-          await onSubmit(input); // Gunakan nilai input dari state
-        }
-      }}
+      onSubmit={handleSubmit}
       ref={formRef}
     >
       <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">
@@ -77,9 +101,9 @@ export function PromptForm({
           onKeyDown={onKeyDown}
           rows={1}
           value={input}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setInput && setInput(e.target.value)
-          }
+          onChange={onChanges}
+          onFocus={onFocuses}
+          onBlur={onBlurs}
           placeholder="Send a message."
           spellCheck={false}
           className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"

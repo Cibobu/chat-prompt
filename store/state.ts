@@ -18,10 +18,16 @@ export interface ModalProps {
 	closable?: boolean;
 }
 export type Message = {
-    // id: string;
-    // createdAt?: Date;
-    content: string;
-	role: "function" | "user" | "assistant" | "system" | string;
+    id: number;
+    createdAt?: Date;
+    ai_chat_role: string;
+    conv_id: string;
+    message: string;
+	// role: "function" | "user" | "assistant" | "system" | string;
+    device: string;
+    is_mobile: string;
+    os: string;
+    user_agent: string;
     /**
      * If the message has a role of `function`, the `name` field is the name of the function.
      * Otherwise, the name field should not be set.

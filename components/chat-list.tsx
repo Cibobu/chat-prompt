@@ -1,12 +1,14 @@
 import { Separator } from '@/components/ui/separator'
 import { ChatMessage } from '@/components/chat-message'
+import { ChatMessageLoading } from '@/components/chat-message-loader'
 import { Message } from '@/store/state'
 
 export interface ChatList {
-  messages: Message[]
+  messages: Message[],
+  isLoading: boolean
 }
 
-export function ChatList({ messages }: ChatList) {
+export function ChatList({ messages, isLoading }: ChatList) {
   if (!messages.length) {
     return null
   }
@@ -18,9 +20,14 @@ export function ChatList({ messages }: ChatList) {
           <ChatMessage message={message} />
           {index < messages.length - 1 && (
             <Separator className="my-4 md:my-8" />
-          )}
+            )}
         </div>
       ))}
+      {isLoading && (
+        <>
+          <Separator className="my-4 md:my-8" />
+          <ChatMessageLoading  />
+        </>)}
     </div>
   )
 }
